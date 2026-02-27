@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>نَماء · مجتمع التطور</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Cairo', sans-serif;
+}
+body {
+background: #f0f5fa;
+min-height: 100vh;
+padding: 0;
+overflow-x: hidden;
+}
+/* شاشة الدخول */
+.login-container {
+background: white;
+width: 90%;
+max-width: 380px;
+margin: 40px auto;
+padding: 40px 30px;
+border-radius: 30px;
+box-shadow: 0 20px 40px rgba(0, 59, 94, 0.05);
+text-align: center;
+border: 1px solid rgba(15, 59, 94, 0.05);
+}
+.login-container h1 {
+color: #1a4b6d;
+font-size: 2.4rem;
+margin-bottom: 10px;
+font-weight: 700;
+}
+.login-container p {
+color: #6b8ca8;
+margin-bottom: 35px;
+font-size: 1.05rem;
+}
+.login-container input {
+width: 100%;
+padding: 16px 20px;
+margin-bottom: 16px;
+border: 1px solid #e2eaf1;
+border-radius: 50px;
+font-size: 1.05rem;
+background: #f9fcff;
+}
+.login-container input:focus {
+outline: none;
+border-color: #1a4b6d;
+background: white;
+box-shadow: 0 0 0 3px rgba(26, 75, 109, 0.1);
+}
+.login-container button {
+width: 100%;
+padding: 16px;
+background: #1a4b6d;
+color: white;
+border: none;
+border-radius: 50px;
+font-size: 1.15rem;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+}
+.login-container button:hover {
+background: #0f3b5e;
+}
+/* التصميم الرئيسي */
+.main-container {
+display: none;
+width: 100%;
+max-width: 100%;
+margin: 0;
+gap: 0;
+padding: 0;
+min-height: 100vh;
+}
+/* ديسكتوب */
+@media (min-width: 769px) {
+.main-container {
+display: flex !important;
+}
+.right-sidebar {
+width: 30%;
+position: sticky;
+top: 0;
+height: 100vh;
+overflow-y: auto;
+padding: 20px 10px 20px 20px;
+background: #f0f5fa;
+}
+.left-content {
+width: 70%;
+padding: 20px 20px 20px 10px;
+height: 100vh;
+overflow-y: auto;
+}
+.mobile-profile-icon {
+display: none !important;
+}
+.unified-card {
+border-radius: 20px;
+height: auto;
+min-height: calc(100vh - 40px);
+}
+.mobile-back-btn {
+display: none !important;
+}
+.mobile-bottom-bar {
+display: none !important;
+}
+.chat-back-btn {
+display: none !important;
+}
+}
+/* موبايل */
+@media (max-width: 768px) {
+.main-container {
+flex-direction: column;
+padding: 0;
+gap: 0;
+}
+.right-sidebar {
+width: 100%;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0, 0, 0, 0.5);
+z-index: 2000;
+display: none;
+padding: 0;
+overflow-y: auto;
+}
+.right-sidebar.show {
+display: block;
+}
+.right-sidebar .unified-card {
+width: 100%;
+height: 100%;
+margin: 0;
+max-width: none;
+max-height: none;
+border-radius: 0;
+overflow-y: auto;
+position: relative;
+}
+.left-content {
+width: 100%;
+margin-top: 0;
+padding: 80px 15px 120px 15px;
+min-height: 100vh;
+}
+.mobile-profile-icon {
+position: fixed;
+top: 15px;
+left: 15px;
+width: 50px;
+height: 50px;
+background: #1a4b6d;
+color: white;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+cursor: pointer;
+z-index: 1001;
+box-shadow: 0 4px 12px rgba(26, 75, 109, 0.3);
+border: 2px solid white;
+}
+/* شريط الموبايل السفلي المطور */
+.mobile-bottom-bar {
+display: flex;
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+background: white;
+padding: 12px 15px 20px;
+box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.08);
+border-top: 1px solid #eef2f8;
+z-index: 1000;
+align-items: center;
+gap: 8px;
+backdrop-filter: blur(10px);
+background: rgba(255, 255, 255, 0.98);
+}
+.mobile-input-wrapper {
+flex: 1;
+display: flex;
+align-items: center;
+background: #f5f9ff;
+border: 1px solid #e2eaf1;
+border-radius: 30px;
+padding: 4px 4px 4px 15px;
+transition: 0.3s;
+}
+.mobile-input-wrapper:focus-within {
+border-color: #1a4b6d;
+background: white;
+box-shadow: 0 0 0 3px rgba(26, 75, 109, 0.1);
+}
+.mobile-input-wrapper input {
+flex: 1;
+background: transparent;
+border: none;
+padding: 10px 0;
+font-size: 1rem;
+outline: none;
+min-width: 0;
+}
+.mobile-image-btn {
+background: transparent;
+color: #1a4b6d;
+border: none;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1.3rem;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: 0.3s;
+flex-shrink: 0;
+}
+.mobile-image-btn:hover {
+background: #e8f0f8;
+}
+.mobile-image-btn.active {
+background: #1a4b6d;
+color: white;
+}
+.mobile-send-btn {
+background: #1a4b6d;
+color: white;
+width: 48px;
+height: 48px;
+border-radius: 50%;
+border: none;
+cursor: pointer;
+font-size: 1.3rem;
+box-shadow: 0 4px 12px rgba(26, 75, 109, 0.25);
+flex-shrink: 0;
+transition: 0.3s;
+}
+.mobile-send-btn:hover {
+transform: scale(1.05);
+background: #0f3b5e;
+}
+.mobile-image-preview {
+position: fixed;
+bottom: 90px;
+left: 15px;
+right: 15px;
+background: white;
+border-radius: 20px;
+padding: 15px;
+box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+border: 1px solid #eef2f8;
+z-index: 1002;
+display: none;
+animation: slideUp 0.3s ease;
+}
+.mobile-image-preview.show {
+display: block;
+}
+@keyframes slideUp {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.mobile-preview-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 12px;
+color: #1e3b5c;
+font-weight: 600;
+}
+.mobile-preview-close {
+background: none;
+border: none;
+color: #6b8ca8;
+font-size: 1.2rem;
+cursor: pointer;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.mobile-preview-close:hover {
+background: #f0f5fa;
+}
+.mobile-preview-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 8px;
+max-height: 200px;
+overflow-y: auto;
+padding: 5px;
+}
+.mobile-preview-item {
+position: relative;
+aspect-ratio: 1;
+border-radius: 12px;
+overflow: hidden;
+border: 2px solid #eef2f8;
+}
+.mobile-preview-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.mobile-preview-remove {
+position: absolute;
+top: -5px;
+right: -5px;
+width: 22px;
+height: 22px;
+background: #e74c3c;
+color: white;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+font-size: 0.7rem;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 2px solid white;
+}
+.mobile-back-btn {
+position: sticky;
+top: 0;
+width: 100%;
+background: white;
+padding: 15px 20px;
+border-bottom: 1px solid #eef2f8;
+display: flex;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+z-index: 100;
+font-weight: 600;
+color: #1a4b6d;
+box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+.mobile-back-btn:hover {
+background: #f8fbfe;
+}
+.mobile-back-btn span {
+font-size: 1.4rem;
+line-height: 1;
+}
+/* زر الرجوع في الشات للموبايل */
+.chat-back-btn {
+display: none;
+background: rgba(255,255,255,0.2);
+border: none;
+color: white;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1.2rem;
+}
+}
+/* الكارد الموحد */
+.unified-card {
+background: white;
+border-radius: 25px;
+padding: 0;
+box-shadow: 0 10px 30px rgba(0, 59, 94, 0.03);
+border: 1px solid #eef2f8;
+overflow: hidden;
+}
+/* قسم البروفايل */
+.profile-section {
+padding: 25px;
+background: linear-gradient(145deg, #f8fbfe, #ffffff);
+border-bottom: 1px solid #eef2f8;
+}
+.profile-header {
+display: flex;
+align-items: center;
+gap: 15px;
+margin-bottom: 20px;
+}
+.profile-avatar {
+width: 60px;
+height: 60px;
+background: linear-gradient(145deg, #e1f0f5, #d0e4ed);
+border-radius: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+font-weight: 600;
+color: #1a4b6d;
+}
+.profile-name h3 {
+color: #1e3b5c;
+font-size: 1.2rem;
+}
+.profile-name p {
+color: #6b8ca8;
+font-size: 0.9rem;
+cursor: pointer;
+}
+.profile-info {
+background: white;
+padding: 15px;
+border-radius: 18px;
+margin-bottom: 15px;
+border: 1px solid #eef2f8;
+}
+.info-row {
+display: flex;
+justify-content: space-between;
+margin-bottom: 8px;
+font-size: 0.95rem;
+}
+.info-row:last-child {
+margin-bottom: 0;
+}
+.info-label {
+color: #6b8ca8;
+}
+.info-value {
+color: #1e3b5c;
+font-weight: 500;
+}
+.edit-profile-btn {
+background: #e8f0f8;
+color: #1a4b6d;
+border: none;
+padding: 12px;
+width: 100%;
+border-radius: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+}
+.edit-profile-btn:hover {
+background: #d0e4ed;
+}
+/* قسم النشر */
+.post-section {
+padding: 25px;
+border-bottom: 1px solid #eef2f8;
+}
+.post-section h3 {
+color: #1e3b5c;
+margin-bottom: 15px;
+font-size: 1.1rem;
+}
+.post-section textarea {
+width: 100%;
+padding: 15px;
+margin-bottom: 15px;
+border: 1px solid #e2eaf1;
+border-radius: 15px;
+background: #f9fcff;
+resize: none;
+min-height: 100px;
+font-size: 1rem;
+}
+.post-section textarea:focus {
+outline: none;
+border-color: #1a4b6d;
+background: white;
+}
+/* رفع الصور */
+.image-upload-container {
+margin-bottom: 15px;
+}
+.image-upload-btn {
+background: #f0f5fa;
+color: #1a4b6d;
+border: 2px dashed #c5d5e4;
+padding: 15px;
+width: 100%;
+border-radius: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+margin-bottom: 10px;
+}
+.image-upload-btn:hover {
+background: #e8f0f8;
+border-color: #1a4b6d;
+}
+.image-upload-input {
+display: none;
+}
+.image-preview-container {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 10px;
+}
+.image-preview-item {
+position: relative;
+width: 80px;
+height: 80px;
+border-radius: 10px;
+overflow: hidden;
+border: 2px solid #eef2f8;
+}
+.image-preview-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.image-remove-btn {
+position: absolute;
+top: -5px;
+right: -5px;
+width: 22px;
+height: 22px;
+background: #e74c3c;
+color: white;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+font-size: 0.8rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.publish-btn {
+background: #1a4b6d;
+color: white;
+border: none;
+padding: 12px;
+width: 100%;
+border-radius: 15px;
+font-weight: 600;
+cursor: pointer;
+margin-bottom: 10px;
+transition: 0.3s;
+}
+.publish-btn:hover {
+background: #0f3b5e;
+}
+.sidebar-btn {
+background: #e8f0f8;
+color: #1a4b6d;
+border: none;
+padding: 14px;
+width: 100%;
+border-radius: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+margin-bottom: 10px;
+}
+.sidebar-btn:hover {
+background: #d0e4ed;
+}
+.sidebar-btn.active {
+background: linear-gradient(145deg, #1a4b6d, #0f3b5e);
+color: white;
+box-shadow: 0 4px 15px rgba(26, 75, 109, 0.25);
+}
+.notification-badge {
+background: #e74c3c;
+color: white;
+font-size: 0.75rem;
+padding: 2px 8px;
+border-radius: 10px;
+margin-right: auto;
+display: none;
+}
+.notification-badge.show {
+display: inline-block;
+}
+/* قسم منشوراتي */
+.my-posts-section, .notifications-section, .messages-section {
+display: none;
+padding: 25px;
+background: linear-gradient(145deg, #f8fbfe, #ffffff);
+border-top: 1px solid #eef2f8;
+max-height: 350px;
+overflow-y: auto;
+}
+.my-posts-section.show, .notifications-section.show, .messages-section.show {
+display: block;
+animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+from { opacity: 0; transform: translateY(-10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.section-title {
+color: #1e3b5c;
+margin-bottom: 15px;
+font-size: 1.1rem;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.section-count {
+background: linear-gradient(145deg, #e8f0f8, #d0e4ed);
+color: #1a4b6d;
+padding: 4px 12px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+}
+.my-post-item, .notification-item, .message-chat-item {
+background: white;
+padding: 18px;
+border-radius: 18px;
+margin-bottom: 12px;
+border: 1px solid #eef2f8;
+transition: 0.3s;
+cursor: pointer;
+position: relative;
+}
+.my-post-item:hover, .notification-item:hover, .message-chat-item:hover {
+transform: translateX(-5px);
+box-shadow: 0 6px 20px rgba(0, 59, 94, 0.08);
+}
+.my-post-item:last-child, .notification-item:last-child, .message-chat-item:last-child {
+margin-bottom: 0;
+}
+.notification-item.unread, .message-chat-item.unread {
+background: #f0f7ff;
+border-color: #b3d4fc;
+}
+.notification-icon, .message-icon {
+font-size: 1.5rem;
+margin-left: 10px;
+}
+.notification-content, .message-content {
+flex: 1;
+}
+.notification-text, .message-chat-name {
+color: #1e3b5c;
+font-size: 0.9rem;
+line-height: 1.5;
+margin-bottom: 5px;
+font-weight: 600;
+}
+.notification-time, .message-chat-time {
+font-size: 0.75rem;
+color: #6b8ca8;
+}
+.message-chat-preview {
+font-size: 0.85rem;
+color: #6b8ca8;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.my-post-date, .notification-date {
+font-size: 0.8rem;
+color: #6b8ca8;
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+.my-post-date i, .notification-date i {
+font-style: normal;
+background: #e1f0f5;
+padding: 3px 8px;
+border-radius: 30px;
+color: #1a4b6d;
+}
+.my-post-text, .notification-desc {
+color: #1e3b5c;
+font-size: 0.95rem;
+line-height: 1.6;
+}
+.no-items {
+text-align: center;
+color: #6b8ca8;
+padding: 40px 20px;
+background: white;
+border-radius: 18px;
+border: 2px dashed #eef2f8;
+font-size: 1rem;
+}
+/* زر حذف المنشور */
+.delete-post-btn {
+position: absolute;
+top: 15px;
+left: 15px;
+background: #fee2e2;
+color: #dc2626;
+border: none;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: 0.3s;
+opacity: 0.7;
+}
+.delete-post-btn:hover {
+opacity: 1;
+background: #fecaca;
+transform: scale(1.1);
+}
+/* المنشورات العامة */
+.feed-header {
+background: white;
+padding: 15px 20px;
+border-radius: 20px;
+margin-bottom: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border: 1px solid #eef2f8;
+}
+.posts-grid {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.post-item {
+background: white;
+padding: 20px;
+border-radius: 20px;
+border: 1px solid #eef2f8;
+box-shadow: 0 4px 15px rgba(0, 59, 94, 0.03);
+}
+.post-author {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 12px;
+flex-wrap: wrap;
+}
+.post-avatar {
+width: 40px;
+height: 40px;
+background: #e1f0f5;
+border-radius: 12px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #1a4b6d;
+font-weight: 600;
+}
+.post-author-info {
+flex: 1;
+}
+.post-author-info h4 {
+color: #1e3b5c;
+font-size: 1rem;
+}
+.post-author-info p {
+font-size: 0.85rem;
+color: #6b8ca8;
+}
+.post-dm-btn {
+background: linear-gradient(145deg, #1a4b6d, #0f3b5e);
+color: white;
+border: none;
+padding: 8px 16px;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+.post-dm-btn:hover {
+transform: scale(1.05);
+box-shadow: 0 4px 15px rgba(26, 75, 109, 0.3);
+}
+.post-desc {
+color: #4a6782;
+font-size: 1rem;
+line-height: 1.6;
+margin-bottom: 15px;
+white-space: pre-wrap;
+}
+/* صور المنشورات - تصميم هادئ وأنيق */
+.post-images-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 8px;
+margin: 15px 0;
+border-radius: 16px;
+overflow: hidden;
+}
+.post-image-wrapper {
+position: relative;
+width: 100%;
+padding-bottom: 100%;
+overflow: hidden;
+cursor: pointer;
+border-radius: 12px;
+background: #f5f9ff;
+}
+.post-image-wrapper img {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+.post-image-wrapper:hover img {
+transform: scale(1.05);
+}
+.image-counter-badge {
+position: absolute;
+bottom: 8px;
+right: 8px;
+background: rgba(26, 75, 109, 0.8);
+color: white;
+padding: 4px 10px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 500;
+backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* صورة واحدة */
+.single-image-wrapper {
+width: 100%;
+max-height: 350px;
+border-radius: 16px;
+overflow: hidden;
+cursor: pointer;
+margin: 15px 0;
+background: #f5f9ff;
+}
+.single-image-wrapper img {
+width: 100%;
+height: auto;
+max-height: 350px;
+object-fit: contain;
+transition: transform 0.3s ease;
+}
+.single-image-wrapper:hover img {
+transform: scale(1.02);
+}
+/* مودال عرض الصور المكبرة */
+.image-viewer-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0, 0, 0, 0.95);
+z-index: 10000;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+.image-viewer-modal.show {
+display: flex;
+}
+.image-viewer-header {
+position: absolute;
+top: 20px;
+right: 20px;
+left: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+color: white;
+z-index: 10001;
+}
+.image-counter {
+background: rgba(255, 255, 255, 0.2);
+padding: 8px 16px;
+border-radius: 30px;
+font-size: 0.9rem;
+color: white;
+backdrop-filter: blur(5px);
+}
+.image-viewer-close {
+background: rgba(255, 255, 255, 0.2);
+border: none;
+color: white;
+font-size: 1.5rem;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+backdrop-filter: blur(5px);
+transition: 0.3s;
+}
+.image-viewer-close:hover {
+background: rgba(255, 255, 255, 0.3);
+transform: scale(1.1);
+}
+.image-viewer-container {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100%;
+padding: 20px;
+}
+.image-viewer-slide {
+display: none;
+width: 100%;
+height: 100%;
+align-items: center;
+justify-content: center;
+}
+.image-viewer-slide.active {
+display: flex;
+}
+.image-viewer-slide img {
+max-width: 100%;
+max-height: 80vh;
+object-fit: contain;
+border-radius: 8px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.image-nav-btn {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(255, 255, 255, 0.2);
+border: none;
+color: white;
+font-size: 2rem;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+backdrop-filter: blur(5px);
+transition: 0.3s;
+z-index: 10002;
+}
+.image-nav-btn:hover {
+background: rgba(255, 255, 255, 0.3);
+transform: translateY(-50%) scale(1.1);
+}
+.image-prev-btn {
+right: 20px;
+}
+.image-next-btn {
+left: 20px;
+}
+@media (max-width: 768px) {
+.image-nav-btn {
+width: 40px;
+height: 40px;
+font-size: 1.5rem;
+}
+.image-viewer-header {
+top: 10px;
+right: 10px;
+left: 10px;
+}
+}
+/* أزرار التفاعل */
+.post-actions {
+display: flex;
+gap: 20px;
+padding-top: 15px;
+border-top: 1px solid #eef2f8;
+}
+.action-btn {
+background: none;
+border: none;
+color: #6b8ca8;
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 6px;
+font-size: 0.9rem;
+transition: 0.3s;
+padding: 8px 12px;
+border-radius: 20px;
+}
+.action-btn:hover {
+background: #f0f5fa;
+}
+.action-btn.liked {
+color: #e74c3c;
+}
+/* قسم التعليقات */
+.comments-section {
+margin-top: 15px;
+padding-top: 15px;
+border-top: 1px solid #eef2f8;
+}
+.comments-section.show {
+display: block;
+}
+.comments-section.hide {
+display: none;
+}
+.comment-input-wrapper {
+display: flex;
+gap: 10px;
+margin-bottom: 15px;
+}
+.comment-input {
+flex: 1;
+padding: 10px 15px;
+border: 1px solid #e2eaf1;
+border-radius: 20px;
+background: #f9fcff;
+font-size: 0.9rem;
+outline: none;
+transition: 0.3s;
+}
+.comment-input:focus {
+border-color: #1a4b6d;
+background: white;
+}
+.comment-send-btn {
+background: #1a4b6d;
+color: white;
+border: none;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1rem;
+transition: 0.3s;
+}
+.comment-send-btn:hover {
+background: #0f3b5e;
+transform: scale(1.1);
+}
+.comment-list {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+.comment-item {
+background: #f8fbfe;
+padding: 12px 15px;
+border-radius: 15px;
+border: 1px solid #eef2f8;
+}
+.comment-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 8px;
+}
+.comment-author {
+font-weight: 600;
+color: #1e3b5c;
+font-size: 0.9rem;
+}
+.comment-date {
+font-size: 0.75rem;
+color: #6b8ca8;
+}
+.comment-text {
+color: #4a6782;
+font-size: 0.9rem;
+line-height: 1.5;
+margin-bottom: 8px;
+white-space: pre-wrap;
+}
+.comment-actions {
+display: flex;
+gap: 15px;
+}
+.comment-action-btn {
+background: none;
+border: none;
+color: #6b8ca8;
+cursor: pointer;
+font-size: 0.8rem;
+display: flex;
+align-items: center;
+gap: 4px;
+transition: 0.3s;
+}
+.comment-action-btn:hover {
+color: #1a4b6d;
+}
+.comment-action-btn.liked {
+color: #e74c3c;
+}
+.reply-input {
+width: 100%;
+padding: 8px 12px;
+border: 1px solid #e2eaf1;
+border-radius: 15px;
+background: white;
+font-size: 0.85rem;
+margin-top: 10px;
+outline: none;
+}
+.reply-input:focus {
+border-color: #1a4b6d;
+}
+.replies-list {
+margin-top: 10px;
+padding-right: 20px;
+border-right: 2px solid #eef2f8;
+}
+.reply-item {
+background: white;
+padding: 10px 12px;
+border-radius: 12px;
+margin-top: 8px;
+border: 1px solid #eef2f8;
+}
+/* مودال التعديل */
+.modal {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.35);
+backdrop-filter: blur(5px);
+align-items: center;
+justify-content: center;
+z-index: 2000;
+}
+.modal-content {
+background: white;
+padding: 30px;
+border-radius: 25px;
+width: 90%;
+max-width: 380px;
+position: relative;
+}
+.close-modal {
+position: absolute;
+top: 15px;
+left: 15px;
+font-size: 1.4rem;
+cursor: pointer;
+color: #6b8ca8;
+}
+.modal-content input {
+width: 100%;
+padding: 12px 15px;
+margin-bottom: 15px;
+border: 1px solid #e2eaf1;
+border-radius: 15px;
+background: #f9fcff;
+}
+.save-btn, .logout-btn {
+flex: 1;
+padding: 12px;
+border: none;
+border-radius: 15px;
+font-weight: 600;
+cursor: pointer;
+}
+.save-btn {
+background: #1a4b6d;
+color: white;
+}
+.logout-btn {
+background: #fee2e2;
+color: #dc2626;
+}
+/* مودال الرسائل الخاصة */
+.chat-modal {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.5);
+z-index: 3000;
+align-items: center;
+justify-content: center;
+}
+.chat-modal.show {
+display: flex;
+}
+.chat-container {
+background: white;
+width: 90%;
+max-width: 500px;
+height: 80vh;
+border-radius: 25px;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+}
+.chat-header {
+background: linear-gradient(145deg, #1a4b6d, #0f3b5e);
+color: white;
+padding: 20px;
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.chat-header-avatar {
+width: 45px;
+height: 45px;
+background: rgba(255,255,255,0.2);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+font-weight: 600;
+}
+.chat-header-info {
+flex: 1;
+}
+.chat-header-info h3 {
+font-size: 1.1rem;
+}
+.chat-header-info p {
+font-size: 0.85rem;
+opacity: 0.8;
+}
+.chat-close {
+background: rgba(255,255,255,0.2);
+border: none;
+color: white;
+width: 35px;
+height: 35px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1.2rem;
+}
+.chat-messages {
+flex: 1;
+overflow-y: auto;
+padding: 20px;
+background: #f8fbfe;
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+.message-bubble {
+max-width: 75%;
+padding: 12px 16px;
+border-radius: 18px;
+font-size: 0.95rem;
+line-height: 1.5;
+}
+.message-bubble.sent {
+background: linear-gradient(145deg, #1a4b6d, #0f3b5e);
+color: white;
+align-self: flex-start;
+border-bottom-right-radius: 5px;
+}
+.message-bubble.received {
+background: white;
+color: #1e3b5c;
+align-self: flex-end;
+border-bottom-left-radius: 5px;
+border: 1px solid #eef2f8;
+}
+.message-time {
+font-size: 0.7rem;
+opacity: 0.7;
+margin-top: 5px;
+}
+.chat-input-area {
+padding: 15px 20px;
+background: white;
+border-top: 1px solid #eef2f8;
+display: flex;
+gap: 10px;
+align-items: center;
+}
+.chat-input {
+flex: 1;
+padding: 12px 18px;
+border: 1px solid #e2eaf1;
+border-radius: 25px;
+background: #f9fcff;
+font-size: 0.95rem;
+outline: none;
+}
+.chat-input:focus {
+border-color: #1a4b6d;
+background: white;
+}
+.chat-send-btn {
+background: #1a4b6d;
+color: white;
+border: none;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1.2rem;
+transition: 0.3s;
+}
+.chat-send-btn:hover {
+background: #0f3b5e;
+transform: scale(1.05);
+}
+/* مودال كتابة رسالة جديدة */
+.new-message-modal {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.5);
+z-index: 4000;
+align-items: center;
+justify-content: center;
+}
+.new-message-modal.show {
+display: flex;
+}
+.new-message-container {
+background: white;
+width: 90%;
+max-width: 400px;
+border-radius: 25px;
+padding: 25px;
+}
+.new-message-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+.new-message-header h3 {
+color: #1e3b5c;
+font-size: 1.2rem;
+}
+.new-message-close {
+background: none;
+border: none;
+color: #6b8ca8;
+font-size: 1.5rem;
+cursor: pointer;
+}
+.new-message-recipient {
+background: #f0f5fa;
+padding: 12px 15px;
+border-radius: 15px;
+margin-bottom: 15px;
+color: #1a4b6d;
+font-weight: 600;
+}
+.new-message-textarea {
+width: 100%;
+padding: 15px;
+border: 1px solid #e2eaf1;
+border-radius: 15px;
+background: #f9fcff;
+resize: none;
+min-height: 100px;
+font-size: 1rem;
+margin-bottom: 15px;
+}
+.new-message-textarea:focus {
+outline: none;
+border-color: #1a4b6d;
+background: white;
+}
+.new-message-send-btn {
+background: #1a4b6d;
+color: white;
+border: none;
+padding: 14px;
+width: 100%;
+border-radius: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+}
+.new-message-send-btn:hover {
+background: #0f3b5e;
+}
+/* سكرول بار */
+.right-sidebar::-webkit-scrollbar,
+.left-content::-webkit-scrollbar,
+.my-posts-section::-webkit-scrollbar,
+.notifications-section::-webkit-scrollbar,
+.messages-section::-webkit-scrollbar,
+.comments-section::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar {
+width: 6px;
+}
+.right-sidebar::-webkit-scrollbar-track,
+.left-content::-webkit-scrollbar-track,
+.my-posts-section::-webkit-scrollbar-track,
+.notifications-section::-webkit-scrollbar-track,
+.messages-section::-webkit-scrollbar-track,
+.comments-section::-webkit-scrollbar-track,
+.chat-messages::-webkit-scrollbar-track {
+background: #f0f5fa;
+border-radius: 10px;
+}
+.right-sidebar::-webkit-scrollbar-thumb,
+.left-content::-webkit-scrollbar-thumb,
+.my-posts-section::-webkit-scrollbar-thumb,
+.notifications-section::-webkit-scrollbar-thumb,
+.messages-section::-webkit-scrollbar-thumb,
+.comments-section::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb {
+background: #c5d5e4;
+border-radius: 10px;
+}
+.right-sidebar::-webkit-scrollbar-thumb:hover,
+.left-content::-webkit-scrollbar-thumb:hover,
+.my-posts-section::-webkit-scrollbar-thumb:hover,
+.notifications-section::-webkit-scrollbar-thumb:hover,
+.messages-section::-webkit-scrollbar-thumb:hover,
+.comments-section::-webkit-scrollbar-thumb:hover,
+.chat-messages::-webkit-scrollbar-thumb:hover {
+background: #1a4b6d;
+}
+/* تمييز المنشور */
+.post-item.highlight {
+animation: highlightPost 1s ease;
+border-color: #1a4b6d;
+box-shadow: 0 0 20px rgba(26, 75, 109, 0.3);
+}
+@keyframes highlightPost {
+0%, 100% { background: white; }
+50% { background: #f0f7ff; }
+}
+</style>
+</head>
+<body>
+<!-- شاشة الدخول -->
+<div class="login-container" id="loginView">
+<h1>نَماء</h1>
+<p>مساحة راقية للتعاون والتطور معاً</p>
+<input type="text" id="loginName" placeholder="الاسم">
+<input type="tel" id="loginPhone" placeholder="رقم الموبايل">
+<button onclick="handleLogin()">دخول</button>
+</div>
+<!-- أيقونة الموبايل -->
+<div class="mobile-profile-icon" id="mobileProfileIcon" onclick="toggleMobileProfile()">🧑</div>
+<!-- المحتوى الرئيسي -->
+<div class="main-container" id="mainView">
+<!-- العمود الأيمن -->
+<div class="right-sidebar" id="rightSidebar">
+<div class="unified-card">
+<div class="mobile-back-btn" id="mobileBackBtn" onclick="closeMobileProfile()">
+<span>←</span> الرجوع للرئيسية
+</div>
+<div class="profile-section">
+<div class="profile-header">
+<div class="profile-avatar" id="avatarDisplay">م</div>
+<div class="profile-name">
+<h3 id="displayName">الاسم</h3>
+<p onclick="openModal()"><span>✎</span> تعديل البروفايل</p>
+</div>
+</div>
+<div class="profile-info">
+<div class="info-row"><span class="info-label">الاسم</span><span class="info-value" id="infoName"></span></div>
+<div class="info-row"><span class="info-label">رقم الموبايل</span><span class="info-value" id="infoPhone"></span></div>
+</div>
+<button class="edit-profile-btn" onclick="openModal()">تعديل البيانات</button>
+</div>
+<div class="post-section">
+<h3>مشاركة جديدة</h3>
+<textarea id="postDesc" placeholder="اكتب ما يدور في ذهنك... فكرة، سؤال، أو كلمة تشجيعية"></textarea>
+<!-- رفع الصور -->
+<div class="image-upload-container">
+<label class="image-upload-btn">
+<span>📷</span>
+<span>إضافة صور</span>
+<input type="file" class="image-upload-input" id="imageUpload" accept="image/*" multiple>
+</label>
+<div class="image-preview-container" id="imagePreviewContainer"></div>
+</div>
+<button class="publish-btn" onclick="publishPost()">انشر المشاركة</button>
+<button class="sidebar-btn" id="myPostsToggle" onclick="toggleMyPosts()">
+<span>📋</span>
+<span>منشوراتي</span>
+</button>
+<button class="sidebar-btn" id="notificationsToggle" onclick="toggleNotifications()">
+<span>🔔</span>
+<span>الإشعارات</span>
+<span class="notification-badge" id="notificationBadge">0</span>
+</button>
+<button class="sidebar-btn" id="messagesToggle" onclick="toggleMessages()">
+<span>💬</span>
+<span>الرسائل</span>
+<span class="notification-badge" id="messageBadge">0</span>
+</button>
+</div>
+<div class="my-posts-section" id="myPostsSection">
+<h4 class="section-title">📌 منشوراتي <span class="section-count" id="myPostsCount">0</span></h4>
+<div class="my-posts-list" id="myPostsList"></div>
+</div>
+<div class="notifications-section" id="notificationsSection">
+<h4 class="section-title">🔔 الإشعارات <span class="section-count" id="notificationsCount">0</span></h4>
+<div class="notifications-list" id="notificationsList"></div>
+</div>
+<div class="messages-section" id="messagesSection">
+<h4 class="section-title">💬 المحادثات <span class="section-count" id="messagesCount">0</span></h4>
+<div class="messages-list" id="messagesList"></div>
+</div>
+</div>
+</div>
+<!-- المنشورات العامة -->
+<div class="left-content">
+<div class="feed-header">
+<h2 id="feedTitle">أحدث المشاركات</h2>
+<span id="postsCount">٠ منشور</span>
+</div>
+<div class="posts-grid" id="postsContainer"></div>
+</div>
+</div>
+<!-- شريط النشر السفلي للموبايل المطور -->
+<div class="mobile-bottom-bar" id="mobileBottomBar">
+<div class="mobile-input-wrapper">
+<input type="text" id="mobilePostInput" placeholder="اكتب مشاركتك...">
+<button class="mobile-image-btn" id="mobileImageBtn" onclick="toggleMobileImagePicker()">📷</button>
+</div>
+<button class="mobile-send-btn" onclick="publishMobilePost()">📤</button>
+</div>
+<!-- معاينة الصور في الموبايل -->
+<div class="mobile-image-preview" id="mobileImagePreview">
+<div class="mobile-preview-header">
+<span>الصور المختارة</span>
+<button class="mobile-preview-close" onclick="toggleMobileImagePicker()">✕</button>
+</div>
+<div class="mobile-preview-grid" id="mobilePreviewGrid"></div>
+</div>
+<!-- مودال تعديل الملف الشخصي -->
+<div class="modal" id="profileModal">
+<div class="modal-content">
+<span class="close-modal" onclick="closeModal('profileModal')">✕</span>
+<h2>تعديل البيانات</h2>
+<input type="text" id="editName" placeholder="الاسم">
+<input type="tel" id="editPhone" placeholder="رقم الموبايل">
+<div style="display:flex;gap:10px;margin-top:15px;">
+<button class="save-btn" onclick="saveProfile()">حفظ</button>
+<button class="logout-btn" onclick="logout()">خروج</button>
+</div>
+</div>
+</div>
+<!-- مودال عرض الصور المتقدم -->
+<div class="image-viewer-modal" id="imageViewerModal">
+<div class="image-viewer-header">
+<span class="image-counter" id="imageViewerCounter"></span>
+<button class="image-viewer-close" onclick="closeImageViewer()">✕</button>
+</div>
+<button class="image-nav-btn image-prev-btn" onclick="navigateImage(-1)">←</button>
+<button class="image-nav-btn image-next-btn" onclick="navigateImage(1)">→</button>
+<div class="image-viewer-container" id="imageViewerContainer"></div>
+</div>
+<!-- مودال المحادثة الخاصة -->
+<div class="chat-modal" id="chatModal">
+<div class="chat-container">
+<div class="chat-header">
+<button class="chat-back-btn" id="chatBackBtn" onclick="closeChat()">←</button>
+<div class="chat-header-avatar" id="chatAvatar">م</div>
+<div class="chat-header-info">
+<h3 id="chatUserName">اسم المستخدم</h3>
+<p>متصل الآن</p>
+</div>
+<button class="chat-close" onclick="closeChat()">✕</button>
+</div>
+<div class="chat-messages" id="chatMessages"></div>
+<div class="chat-input-area">
+<input type="text" class="chat-input" id="chatInput" placeholder="اكتب رسالتك...">
+<button class="chat-send-btn" onclick="sendChatMessage()">📤</button>
+</div>
+</div>
+</div>
+<!-- مودال كتابة رسالة جديدة -->
+<div class="new-message-modal" id="newMessageModal">
+<div class="new-message-container">
+<div class="new-message-header">
+<h3>📝 رسالة جديدة</h3>
+<button class="new-message-close" onclick="closeNewMessageModal()">✕</button>
+</div>
+<div class="new-message-recipient" id="newMessageRecipient"></div>
+<textarea class="new-message-textarea" id="newMessageText" placeholder="اكتب رسالتك هنا..."></textarea>
+<button class="new-message-send-btn" onclick="sendNewMessage()">إرسال الرسالة</button>
+</div>
+</div>
+<!-- رفع الصور المخفي للموبايل -->
+<input type="file" id="mobileImageUpload" accept="image/*" multiple style="display: none;">
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+const firebaseConfig = {
+apiKey: "AIzaSyDv348xdxShxrVVAEtIlCpeBfKqvOfY-0o",
+authDomain: "talk-19c55.firebaseapp.com",
+databaseURL: "https://talk-19c55-default-rtdb.firebaseio.com",
+projectId: "talk-19c55",
+storageBucket: "talk-19c55.firebasestorage.app",
+messagingSenderId: "908101479029",
+appId: "1:908101479029:web:8e3fa4ffa469d4e56a663c"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+// العناصر
+const loginView = document.getElementById('loginView');
+const mainView = document.getElementById('mainView');
+const rightSidebar = document.getElementById('rightSidebar');
+const mobileProfileIcon = document.getElementById('mobileProfileIcon');
+const mobileBottomBar = document.getElementById('mobileBottomBar');
+const loginName = document.getElementById('loginName');
+const loginPhone = document.getElementById('loginPhone');
+const displayName = document.getElementById('displayName');
+const infoName = document.getElementById('infoName');
+const infoPhone = document.getElementById('infoPhone');
+const avatarDisplay = document.getElementById('avatarDisplay');
+const editName = document.getElementById('editName');
+const editPhone = document.getElementById('editPhone');
+const postsContainer = document.getElementById('postsContainer');
+const postsCount = document.getElementById('postsCount');
+const mobilePostInput = document.getElementById('mobilePostInput');
+const postDesc = document.getElementById('postDesc');
+const imageUpload = document.getElementById('imageUpload');
+const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+const myPostsList = document.getElementById('myPostsList');
+const myPostsSection = document.getElementById('myPostsSection');
+const myPostsToggle = document.getElementById('myPostsToggle');
+const myPostsCount = document.getElementById('myPostsCount');
+const notificationsList = document.getElementById('notificationsList');
+const notificationsSection = document.getElementById('notificationsSection');
+const notificationsToggle = document.getElementById('notificationsToggle');
+const notificationsCount = document.getElementById('notificationsCount');
+const notificationBadge = document.getElementById('notificationBadge');
+const messagesList = document.getElementById('messagesList');
+const messagesSection = document.getElementById('messagesSection');
+const messagesToggle = document.getElementById('messagesToggle');
+const messagesCount = document.getElementById('messagesCount');
+const messageBadge = document.getElementById('messageBadge');
+// عناصر الموبايل الجديدة
+const mobileImageBtn = document.getElementById('mobileImageBtn');
+const mobileImageUpload = document.getElementById('mobileImageUpload');
+const mobileImagePreview = document.getElementById('mobileImagePreview');
+const mobilePreviewGrid = document.getElementById('mobilePreviewGrid');
+// عناصر عرض الصور
+const imageViewerModal = document.getElementById('imageViewerModal');
+const imageViewerContainer = document.getElementById('imageViewerContainer');
+const imageViewerCounter = document.getElementById('imageViewerCounter');
+// عناصر الشات
+const chatModal = document.getElementById('chatModal');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatUserName = document.getElementById('chatUserName');
+const chatAvatar = document.getElementById('chatAvatar');
+const chatBackBtn = document.getElementById('chatBackBtn');
+// عناصر مودال الرسالة الجديدة
+const newMessageModal = document.getElementById('newMessageModal');
+const newMessageRecipient = document.getElementById('newMessageRecipient');
+const newMessageText = document.getElementById('newMessageText');
+let currentUser = null;
+let allPosts = [];
+let allNotifications = [];
+let allMessages = [];
+let selectedImages = [];
+let mobileSelectedImages = [];
+let currentViewerImages = [];
+let currentViewerIndex = 0;
+let currentChatUser = null;
+let currentChatRoomId = null;
+let newMessageTargetUser = null;
+const savedUser = localStorage.getItem('namaa_user');
+if (savedUser) {
+currentUser = JSON.parse(savedUser);
+showMainView();
+loadPosts();
+loadNotifications();
+loadMessages();
+} else {
+loginView.style.display = 'block';
+mobileProfileIcon.style.display = 'none';
+}
+// ==================== دوال تسجيل الدخول والملف الشخصي ====================
+window.handleLogin = () => {
+const name = loginName.value.trim();
+const phone = loginPhone.value.trim();
+if (!name || !phone) return alert('الرجاء إدخال الاسم ورقم الموبايل');
+currentUser = { name, phone };
+localStorage.setItem('namaa_user', JSON.stringify(currentUser));
+showMainView();
+loadPosts();
+loadNotifications();
+loadMessages();
+};
+function showMainView() {
+loginView.style.display = 'none';
+mainView.style.display = 'flex';
+mobileBottomBar.style.display = 'flex';
+mobileProfileIcon.style.display = 'flex';
+if (window.innerWidth <= 768) {
+chatBackBtn.style.display = 'block';
+}
+updateProfileUI();
+}
+function updateProfileUI() {
+displayName.textContent = currentUser.name;
+infoName.textContent = currentUser.name;
+infoPhone.textContent = currentUser.phone;
+avatarDisplay.textContent = currentUser.name.charAt(0);
+editName.value = currentUser.name;
+editPhone.value = currentUser.phone;
+}
+window.toggleMobileProfile = () => {
+if (window.innerWidth <= 768) {
+rightSidebar.classList.add('show');
+}
+};
+window.closeMobileProfile = () => {
+if (window.innerWidth <= 768) {
+rightSidebar.classList.remove('show');
+}
+};
+window.openModal = () => document.getElementById('profileModal').style.display = 'flex';
+window.closeModal = (modalId) => document.getElementById(modalId).style.display = 'none';
+window.saveProfile = () => {
+const newName = editName.value.trim();
+const newPhone = editPhone.value.trim();
+if (!newName || !newPhone) return alert('جميع الحقول مطلوبة');
+currentUser = { name: newName, phone: newPhone };
+localStorage.setItem('namaa_user', JSON.stringify(currentUser));
+updateProfileUI();
+closeModal('profileModal');
+};
+window.logout = () => {
+localStorage.removeItem('namaa_user');
+location.reload();
+};
+// ==================== دوال رفع الصور (النسخة الأساسية) ====================
+imageUpload.addEventListener('change', (event) => {
+const files = event.target.files;
+if (!files || files.length === 0) return;
+for (let i = 0; i < files.length; i++) {
+const file = files[i];
+if (!file.type.startsWith('image/')) continue;
+const reader = new FileReader();
+reader.onload = (e) => {
+selectedImages.push(e.target.result);
+renderImagePreviews();
+};
+reader.readAsDataURL(file);
+}
+event.target.value = '';
+});
+function renderImagePreviews() {
+imagePreviewContainer.innerHTML = '';
+selectedImages.forEach((img, index) => {
+const div = document.createElement('div');
+div.className = 'image-preview-item';
+div.innerHTML = `
+<img src="${img}" alt="معاينة">
+<button class="image-remove-btn" onclick="removeImage(${index})">✕</button>
+`;
+imagePreviewContainer.appendChild(div);
+});
+}
+window.removeImage = (index) => {
+selectedImages.splice(index, 1);
+renderImagePreviews();
+};
+// ==================== دوال رفع الصور للموبايل ====================
+window.toggleMobileImagePicker = () => {
+if (mobileImagePreview.classList.contains('show')) {
+mobileImagePreview.classList.remove('show');
+mobileImageBtn.classList.remove('active');
+} else {
+mobileImageUpload.click();
+}
+};
+mobileImageUpload.addEventListener('change', (event) => {
+const files = event.target.files;
+if (!files || files.length === 0) return;
+for (let i = 0; i < files.length; i++) {
+const file = files[i];
+if (!file.type.startsWith('image/')) continue;
+const reader = new FileReader();
+reader.onload = (e) => {
+mobileSelectedImages.push(e.target.result);
+renderMobileImagePreviews();
+};
+reader.readAsDataURL(file);
+}
+event.target.value = '';
+mobileImagePreview.classList.add('show');
+mobileImageBtn.classList.add('active');
+});
+function renderMobileImagePreviews() {
+mobilePreviewGrid.innerHTML = '';
+mobileSelectedImages.forEach((img, index) => {
+const div = document.createElement('div');
+div.className = 'mobile-preview-item';
+div.innerHTML = `
+<img src="${img}" alt="معاينة">
+<button class="mobile-preview-remove" onclick="removeMobileImage(${index})">✕</button>
+`;
+mobilePreviewGrid.appendChild(div);
+});
+}
+window.removeMobileImage = (index) => {
+mobileSelectedImages.splice(index, 1);
+renderMobileImagePreviews();
+if (mobileSelectedImages.length === 0) {
+mobileImagePreview.classList.remove('show');
+mobileImageBtn.classList.remove('active');
+}
+};
+// ==================== دوال نشر المنشورات ====================
+window.publishPost = () => {
+const desc = postDesc.value.trim();
+if (!desc && selectedImages.length === 0) return alert('اكتب شيئاً أو اختر صور للمشاركة');
+push(ref(db, 'posts'), {
+author: currentUser.name,
+authorPhone: currentUser.phone,
+desc: desc,
+images: selectedImages,
+timestamp: Date.now(),
+likes: 0,
+likedBy: [],
+comments: []
+}).then(() => {
+postDesc.value = '';
+selectedImages = [];
+renderImagePreviews();
+if (window.innerWidth <= 768) {
+rightSidebar.classList.remove('show');
+}
+});
+};
+window.publishMobilePost = () => {
+const text = mobilePostInput.value.trim();
+if (!text && mobileSelectedImages.length === 0) return alert('اكتب شيئاً أو اختر صور للمشاركة');
+push(ref(db, 'posts'), {
+author: currentUser.name,
+authorPhone: currentUser.phone,
+desc: text || '',
+images: mobileSelectedImages,
+timestamp: Date.now(),
+likes: 0,
+likedBy: [],
+comments: []
+}).then(() => {
+mobilePostInput.value = '';
+mobileSelectedImages = [];
+mobileImagePreview.classList.remove('show');
+mobileImageBtn.classList.remove('active');
+renderMobileImagePreviews();
+});
+};
+// ==================== دوال عرض الصور المتقدم ====================
+window.openImageViewer = (images, index) => {
+currentViewerImages = images;
+currentViewerIndex = index;
+renderImageViewer();
+imageViewerModal.classList.add('show');
+document.body.style.overflow = 'hidden';
+};
+window.closeImageViewer = () => {
+imageViewerModal.classList.remove('show');
+document.body.style.overflow = '';
+};
+window.navigateImage = (direction) => {
+const newIndex = currentViewerIndex + direction;
+if (newIndex >= 0 && newIndex < currentViewerImages.length) {
+currentViewerIndex = newIndex;
+renderImageViewer();
+}
+};
+function renderImageViewer() {
+if (!currentViewerImages || currentViewerImages.length === 0) return;
+imageViewerContainer.innerHTML = '';
+imageViewerCounter.textContent = `${currentViewerIndex + 1} / ${currentViewerImages.length}`;
+const slideDiv = document.createElement('div');
+slideDiv.className = 'image-viewer-slide active';
+const img = document.createElement('img');
+img.src = currentViewerImages[currentViewerIndex];
+img.alt = 'صورة مكبرة';
+slideDiv.appendChild(img);
+imageViewerContainer.appendChild(slideDiv);
+}
+// ==================== دوال الرسائل الخاصة ====================
+function getChatRoomId(user1, user2) {
+const names = [user1, user2].sort();
+return names.join('_');
+}
+// فتح مودال كتابة رسالة جديدة
+window.openNewMessageModal = (targetUser) => {
+if (targetUser === currentUser.name) return alert('لا يمكنك مراسلة نفسك');
+newMessageTargetUser = targetUser;
+newMessageRecipient.textContent = `📩 إلى: ${targetUser}`;
+newMessageText.value = '';
+newMessageModal.classList.add('show');
+};
+// إغلاق مودال الرسالة الجديدة
+window.closeNewMessageModal = () => {
+newMessageModal.classList.remove('show');
+newMessageTargetUser = null;
+};
+// إرسال رسالة جديدة
+window.sendNewMessage = () => {
+const text = newMessageText.value.trim();
+if (!text || !newMessageTargetUser) return alert('اكتب رسالة أولاً');
+const chatRoomId = getChatRoomId(currentUser.name, newMessageTargetUser);
+push(ref(db, `messages/${chatRoomId}`), {
+from: currentUser.name,
+to: newMessageTargetUser,
+text: text,
+timestamp: Date.now(),
+read: false
+});
+// إنشاء إشعار
+push(ref(db, 'notifications'), {
+fromUser: currentUser.name,
+toUser: newMessageTargetUser,
+type: 'message',
+messagePreview: text.substring(0, 50),
+timestamp: Date.now(),
+read: false
+});
+closeNewMessageModal();
+alert('✅ تم إرسال الرسالة بنجاح');
+// فتح الشات مباشرة
+openChat(newMessageTargetUser);
+};
+// فتح الشات
+window.openChat = (targetUser) => {
+if (targetUser === currentUser.name) return;
+currentChatUser = targetUser;
+currentChatRoomId = getChatRoomId(currentUser.name, targetUser);
+chatUserName.textContent = targetUser;
+chatAvatar.textContent = targetUser.charAt(0);
+chatModal.classList.add('show');
+loadChatMessages();
+};
+// إغلاق الشات
+window.closeChat = () => {
+chatModal.classList.remove('show');
+currentChatUser = null;
+currentChatRoomId = null;
+};
+// تحميل رسائل الشات
+function loadChatMessages() {
+if (!currentChatRoomId) return;
+onValue(ref(db, `messages/${currentChatRoomId}`), (snapshot) => {
+const data = snapshot.val();
+chatMessages.innerHTML = '';
+if (!data) {
+chatMessages.innerHTML = '<p style="text-align:center;color:#6b8ca8;padding:40px 20px;">ابدأ المحادثة الآن 💬</p>';
+return;
+}
+const messages = Object.values(data).sort((a, b) => a.timestamp - b.timestamp);
+messages.forEach(msg => {
+const isSent = msg.from === currentUser.name;
+const div = document.createElement('div');
+div.className = `message-bubble ${isSent ? 'sent' : 'received'}`;
+div.innerHTML = `
+<div>${msg.text}</div>
+<div class="message-time">${new Date(msg.timestamp).toLocaleTimeString('ar-EG', {hour: '2-digit', minute: '2-digit'})}</div>
+`;
+chatMessages.appendChild(div);
+});
+chatMessages.scrollTop = chatMessages.scrollHeight;
+// تحديث حالة القراءة
+messages.filter(m => m.to === currentUser.name && !m.read).forEach(msg => {
+update(ref(db, `messages/${currentChatRoomId}/${Object.keys(data).find(k => data[k].timestamp === msg.timestamp)}`), {
+read: true
+});
+});
+});
+}
+// إرسال رسالة في الشات
+window.sendChatMessage = () => {
+const text = chatInput.value.trim();
+if (!text || !currentChatRoomId) return;
+push(ref(db, `messages/${currentChatRoomId}`), {
+from: currentUser.name,
+to: currentChatUser,
+text: text,
+timestamp: Date.now(),
+read: false
+});
+// إنشاء إشعار
+push(ref(db, 'notifications'), {
+fromUser: currentUser.name,
+toUser: currentChatUser,
+type: 'message',
+messagePreview: text.substring(0, 50),
+timestamp: Date.now(),
+read: false
+});
+chatInput.value = '';
+};
+// تحميل قائمة المحادثات
+function loadMessages() {
+onValue(ref(db, 'messages'), (snapshot) => {
+const data = snapshot.val();
+if (!data) {
+allMessages = [];
+updateMessageBadge();
+if (messagesSection.classList.contains('show')) {
+renderMessages();
+}
+return;
+}
+// تجميع المحادثات
+const chatMap = {};
+Object.entries(data).forEach(([roomId, messages]) => {
+const users = roomId.split('_');
+const otherUser = users.find(u => u !== currentUser.name);
+if (!otherUser) return;
+const msgs = Object.values(messages).sort((a, b) => b.timestamp - a.timestamp);
+const lastMsg = msgs[0];
+const unreadCount = msgs.filter(m => m.to === currentUser.name && !m.read).length;
+chatMap[otherUser] = {
+user: otherUser,
+lastMessage: lastMsg,
+unreadCount: unreadCount,
+totalMessages: msgs.length
+};
+});
+allMessages = Object.values(chatMap).sort((a, b) => b.lastMessage.timestamp - a.lastMessage.timestamp);
+updateMessageBadge();
+if (messagesSection.classList.contains('show')) {
+renderMessages();
+}
+});
+}
+// تحديث شارة الرسائل
+function updateMessageBadge() {
+const totalUnread = allMessages.reduce((sum, chat) => sum + chat.unreadCount, 0);
+messagesCount.textContent = allMessages.length;
+if (totalUnread > 0) {
+messageBadge.textContent = totalUnread;
+messageBadge.classList.add('show');
+} else {
+messageBadge.classList.remove('show');
+}
+}
+// عرض قائمة المحادثات
+function renderMessages() {
+messagesList.innerHTML = '';
+if (allMessages.length === 0) {
+messagesList.innerHTML = '<div class="no-items">لا توجد محادثات بعد 💬</div>';
+return;
+}
+allMessages.forEach(chat => {
+const div = document.createElement('div');
+div.className = `message-chat-item ${chat.unreadCount > 0 ? 'unread' : ''}`;
+div.onclick = () => openChat(chat.user);
+div.innerHTML = `
+<div style="display: flex; align-items: center; gap: 10px;">
+<span class="message-icon">💬</span>
+<div class="message-content">
+<div class="message-chat-name">${chat.user}</div>
+<div class="message-chat-preview">${chat.lastMessage.text}</div>
+<div class="message-chat-time">${getTimeAgo(chat.lastMessage.timestamp)}</div>
+</div>
+${chat.unreadCount > 0 ? `<span style="background:#e74c3c;color:white;font-size:0.7rem;padding:2px 8px;border-radius:10px;">${chat.unreadCount}</span>` : ''}
+</div>
+`;
+messagesList.appendChild(div);
+});
+}
+// ==================== دوال الإشعارات والمنشورات ====================
+window.toggleMyPosts = () => {
+const isShowing = myPostsSection.classList.contains('show');
+if (isShowing) {
+myPostsSection.classList.remove('show');
+myPostsToggle.classList.remove('active');
+} else {
+notificationsSection.classList.remove('show');
+notificationsToggle.classList.remove('active');
+messagesSection.classList.remove('show');
+messagesToggle.classList.remove('active');
+renderMyPosts();
+myPostsSection.classList.add('show');
+myPostsToggle.classList.add('active');
+setTimeout(() => {
+myPostsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, 100);
+}
+};
+window.toggleNotifications = () => {
+const isShowing = notificationsSection.classList.contains('show');
+if (isShowing) {
+notificationsSection.classList.remove('show');
+notificationsToggle.classList.remove('active');
+} else {
+myPostsSection.classList.remove('show');
+myPostsToggle.classList.remove('active');
+messagesSection.classList.remove('show');
+messagesToggle.classList.remove('active');
+renderNotifications();
+notificationsSection.classList.add('show');
+notificationsToggle.classList.add('active');
+setTimeout(() => {
+notificationsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, 100);
+}
+};
+window.toggleMessages = () => {
+const isShowing = messagesSection.classList.contains('show');
+if (isShowing) {
+messagesSection.classList.remove('show');
+messagesToggle.classList.remove('active');
+} else {
+myPostsSection.classList.remove('show');
+myPostsToggle.classList.remove('active');
+notificationsSection.classList.remove('show');
+notificationsToggle.classList.remove('active');
+renderMessages();
+messagesSection.classList.add('show');
+messagesToggle.classList.add('active');
+setTimeout(() => {
+messagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, 100);
+}
+};
+function renderMyPosts() {
+const myPosts = allPosts.filter(post => post.author === currentUser.name);
+myPostsCount.textContent = myPosts.length;
+myPostsList.innerHTML = '';
+if (myPosts.length === 0) {
+myPostsList.innerHTML = '<div class="no-items">ليس لديك منشورات بعد 🌱</div>';
+} else {
+myPosts.reverse().forEach(post => {
+const div = document.createElement('div');
+div.className = 'my-post-item';
+div.innerHTML = `
+<button class="delete-post-btn" onclick="deletePost('${post.id}')" title="حذف المنشور">🗑</button>
+<div class="my-post-date">
+<i>${new Date(post.timestamp).toLocaleDateString('ar-EG')}</i>
+</div>
+<div class="my-post-text">${post.desc}</div>
+${post.images && post.images.length > 0 ? `<div style="margin-top:10px;color:#6b8ca8;font-size:0.85rem;">📷 ${post.images.length} صورة</div>` : ''}
+`;
+myPostsList.appendChild(div);
+});
+}
+}
+// حذف المنشور
+window.deletePost = (postId) => {
+if (confirm('هل أنت متأكد من حذف هذا المنشور؟')) {
+remove(ref(db, `posts/${postId}`)).then(() => {
+alert('✅ تم حذف المنشور بنجاح');
+}).catch(err => {
+alert('❌ حدث خطأ أثناء الحذف');
+});
+}
+};
+function loadNotifications() {
+onValue(ref(db, 'notifications'), (snapshot) => {
+const data = snapshot.val();
+if (!data) {
+allNotifications = [];
+updateNotificationBadge();
+if (notificationsSection.classList.contains('show')) {
+renderNotifications();
+}
+return;
+}
+allNotifications = Object.entries(data)
+.map(([id, notification]) => ({ id, ...notification }))
+.filter(n => n.toUser === currentUser.name)
+.sort((a, b) => b.timestamp - a.timestamp);
+updateNotificationBadge();
+if (notificationsSection.classList.contains('show')) {
+renderNotifications();
+}
+});
+}
+function updateNotificationBadge() {
+const unreadCount = allNotifications.filter(n => !n.read).length;
+notificationsCount.textContent = allNotifications.length;
+if (unreadCount > 0) {
+notificationBadge.textContent = unreadCount;
+notificationBadge.classList.add('show');
+} else {
+notificationBadge.classList.remove('show');
+}
+}
+function renderNotifications() {
+notificationsList.innerHTML = '';
+if (allNotifications.length === 0) {
+notificationsList.innerHTML = '<div class="no-items">لا توجد إشعارات بعد 🔔</div>';
+return;
+}
+allNotifications.forEach(notification => {
+const div = document.createElement('div');
+div.className = `notification-item ${!notification.read ? 'unread' : ''}`;
+div.onclick = () => navigateToPost(notification);
+let icon = '🔔';
+let actionText = '';
+switch(notification.type) {
+case 'like':
+icon = '❤️';
+actionText = 'أعجب بمنشورك';
+break;
+case 'comment':
+icon = '💬';
+actionText = 'علق على منشورك';
+break;
+case 'reply':
+icon = '💭';
+actionText = 'رد على تعليقك';
+break;
+case 'commentLike':
+icon = '🤍';
+actionText = 'أعجب بتعليقك';
+break;
+case 'message':
+icon = '💬';
+actionText = `قام بالرد عليك هنا`;
+break;
+}
+div.innerHTML = `
+<div style="display: flex; align-items: center; gap: 10px;">
+<span class="notification-icon">${icon}</span>
+<div class="notification-content">
+<div class="notification-text">
+<strong>${notification.fromUser}</strong> ${actionText}
+</div>
+<div class="notification-desc" style="font-size: 0.85rem; color: #6b8ca8;">
+"${notification.postPreview || notification.messagePreview}"
+</div>
+<div class="notification-time">${getTimeAgo(notification.timestamp)}</div>
+</div>
+</div>
+`;
+notificationsList.appendChild(div);
+});
+}
+function getTimeAgo(timestamp) {
+const now = Date.now();
+const diff = now - timestamp;
+const minutes = Math.floor(diff / 60000);
+const hours = Math.floor(diff / 3600000);
+const days = Math.floor(diff / 86400000);
+if (minutes < 1) return 'الآن';
+if (minutes < 60) return `منذ ${minutes} دقيقة`;
+if (hours < 24) return `منذ ${hours} ساعة`;
+return `منذ ${days} يوم`;
+}
+function navigateToPost(notification) {
+if (notification.type === 'message') {
+openChat(notification.fromUser);
+update(ref(db, `notifications/${notification.id}`), {
+read: true
+});
+return;
+}
+update(ref(db, `notifications/${notification.id}`), {
+read: true
+});
+notificationsSection.classList.remove('show');
+notificationsToggle.classList.remove('active');
+setTimeout(() => {
+const postElement = document.getElementById(`post-${notification.postId}`);
+if (postElement) {
+postElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+postElement.classList.add('highlight');
+setTimeout(() => {
+postElement.classList.remove('highlight');
+}, 2000);
+}
+}, 300);
+}
+function createNotification(fromUser, toUser, type, postId, postPreview, commentText = '') {
+if (fromUser === toUser) return;
+push(ref(db, 'notifications'), {
+fromUser,
+toUser,
+type,
+postId,
+postPreview,
+commentText,
+timestamp: Date.now(),
+read: false
+});
+}
+// ==================== دوال التفاعل ====================
+window.toggleLike = (postId) => {
+const post = allPosts.find(p => p.id === postId);
+if (!post) return;
+const likedBy = post.likedBy || [];
+const isLiked = likedBy.includes(currentUser.name);
+let newLikedBy;
+let newLikes;
+if (isLiked) {
+newLikedBy = likedBy.filter(name => name !== currentUser.name);
+newLikes = (post.likes || 0) - 1;
+} else {
+newLikedBy = [...likedBy, currentUser.name];
+newLikes = (post.likes || 0) + 1;
+createNotification(
+currentUser.name,
+post.author,
+'like',
+postId,
+post.desc.substring(0, 50)
+);
+}
+update(ref(db, `posts/${postId}`), {
+likes: newLikes,
+likedBy: newLikedBy
+});
+};
+window.addComment = (postId) => {
+const input = document.getElementById(`comment-input-${postId}`);
+const text = input.value.trim();
+if (!text) return;
+const newComment = {
+id: Date.now(),
+author: currentUser.name,
+text: text,
+timestamp: Date.now(),
+likes: 0,
+likedBy: [],
+replies: []
+};
+const post = allPosts.find(p => p.id === postId);
+const comments = post.comments || [];
+update(ref(db, `posts/${postId}`), {
+comments: [...comments, newComment]
+});
+createNotification(
+currentUser.name,
+post.author,
+'comment',
+postId,
+post.desc.substring(0, 50),
+text
+);
+input.value = '';
+};
+window.toggleCommentLike = (postId, commentId) => {
+const post = allPosts.find(p => p.id === postId);
+if (!post) return;
+const comment = (post.comments || []).find(c => c.id === commentId);
+if (!comment) return;
+const likedBy = comment.likedBy || [];
+const isLiked = likedBy.includes(currentUser.name);
+let newLikedBy, newLikes;
+if (isLiked) {
+newLikedBy = likedBy.filter(name => name !== currentUser.name);
+newLikes = (comment.likes || 0) - 1;
+} else {
+newLikedBy = [...likedBy, currentUser.name];
+newLikes = (comment.likes || 0) + 1;
+createNotification(
+currentUser.name,
+comment.author,
+'commentLike',
+postId,
+post.desc.substring(0, 50),
+comment.text
+);
+}
+const updatedComments = post.comments.map(c =>
+c.id === commentId ? { ...c, likes: newLikes, likedBy: newLikedBy } : c
+);
+update(ref(db, `posts/${postId}`), {
+comments: updatedComments
+});
+};
+window.addReply = (postId, commentId) => {
+const input = document.getElementById(`reply-input-${commentId}`);
+const text = input.value.trim();
+if (!text) return;
+const newReply = {
+id: Date.now(),
+author: currentUser.name,
+text: text,
+timestamp: Date.now()
+};
+const post = allPosts.find(p => p.id === postId);
+const comments = post.comments || [];
+const comment = comments.find(c => c.id === commentId);
+const updatedComments = comments.map(c =>
+c.id === commentId ? { ...c, replies: [...(c.replies || []), newReply] } : c
+);
+update(ref(db, `posts/${postId}`), {
+comments: updatedComments
+});
+createNotification(
+currentUser.name,
+comment.author,
+'reply',
+postId,
+post.desc.substring(0, 50),
+text
+);
+input.value = '';
+toggleReplyInput(commentId, false);
+};
+window.toggleReplyInput = (commentId, show) => {
+const replyContainer = document.getElementById(`reply-container-${commentId}`);
+if (replyContainer) {
+replyContainer.style.display = show ? 'block' : 'none';
+}
+};
+window.toggleComments = (postId) => {
+const section = document.getElementById(`comments-section-${postId}`);
+const btn = document.getElementById(`comments-btn-${postId}`);
+if (section.classList.contains('hide')) {
+section.classList.remove('hide');
+section.classList.add('show');
+btn.innerHTML = '💬 إخفاء التعليقات';
+} else {
+section.classList.remove('show');
+section.classList.add('hide');
+btn.innerHTML = '💬 تعليق';
+}
+};
+// ==================== تحميل المنشورات ====================
+function loadPosts() {
+onValue(ref(db, 'posts'), (snapshot) => {
+const data = snapshot.val();
+postsContainer.innerHTML = '';
+if (!data) {
+postsContainer.innerHTML = '<div style="background:white;padding:50px;border-radius:20px;text-align:center;color:#6b8ca8;">كن أول من يشارك 🌱</div>';
+postsCount.textContent = '٠ منشور';
+allPosts = [];
+return;
+}
+allPosts = Object.entries(data).map(([id, post]) => ({ id, ...post })).reverse();
+postsCount.textContent = `${allPosts.length} منشور`;
+allPosts.forEach(post => {
+const isLiked = (post.likedBy || []).includes(currentUser.name);
+const comments = post.comments || [];
+// عرض صور المنشور
+let imagesHTML = '';
+if (post.images && post.images.length > 0) {
+if (post.images.length === 1) {
+imagesHTML = `
+<div class="single-image-wrapper" onclick="openImageViewer(${JSON.stringify(post.images).replace(/"/g, '&quot;')}, 0)">
+<img src="${post.images[0]}" alt="صورة المنشور" loading="lazy">
+</div>
+`;
+} else {
+imagesHTML = '<div class="post-images-grid">';
+post.images.slice(0, 4).forEach((img, index) => {
+imagesHTML += `
+<div class="post-image-wrapper" onclick="openImageViewer(${JSON.stringify(post.images).replace(/"/g, '&quot;')}, ${index})">
+<img src="${img}" alt="صورة المنشور" loading="lazy">
+${index === 3 && post.images.length > 4 ? `<span class="image-counter-badge">+${post.images.length - 4}</span>` : ''}
+</div>
+`;
+});
+imagesHTML += '</div>';
+}
+}
+let commentsHTML = comments.map(comment => {
+const isCommentLiked = (comment.likedBy || []).includes(currentUser.name);
+const replies = comment.replies || [];
+let repliesHTML = replies.map(reply => `
+<div class="reply-item">
+<div class="comment-header">
+<span class="comment-author">${reply.author}</span>
+<span class="comment-date">${new Date(reply.timestamp).toLocaleDateString('ar-EG')}</span>
+</div>
+<div class="comment-text">${reply.text}</div>
+</div>
+`).join('');
+return `
+<div class="comment-item" id="comment-item-${comment.id}">
+<div class="comment-header">
+<span class="comment-author">${comment.author}</span>
+<span class="comment-date">${new Date(comment.timestamp).toLocaleDateString('ar-EG')}</span>
+</div>
+<div class="comment-text">${comment.text}</div>
+<div class="comment-actions">
+<button class="comment-action-btn ${isCommentLiked ? 'liked' : ''}" onclick="toggleCommentLike('${post.id}', ${comment.id})">
+${isCommentLiked ? '❤️' : '🤍'} ${comment.likes || 0}
+</button>
+<button class="comment-action-btn" onclick="toggleReplyInput(${comment.id}, true)">
+💬 رد
+</button>
+</div>
+<div id="reply-container-${comment.id}" style="display: none;">
+<input type="text" class="reply-input" id="reply-input-${comment.id}" placeholder="اكتب ردك...">
+<button class="comment-send-btn" style="width: 35px; height: 35px; font-size: 0.9rem; margin-top: 8px;" onclick="addReply('${post.id}', ${comment.id})">📤</button>
+</div>
+${replies.length > 0 ? `<div class="replies-list">${repliesHTML}</div>` : ''}
+</div>
+`;
+}).join('');
+const div = document.createElement('div');
+div.className = 'post-item';
+div.id = `post-${post.id}`;
+div.innerHTML = `
+<div class="post-author">
+<div class="post-avatar">${post.author.charAt(0)}</div>
+<div class="post-author-info">
+<h4>${post.author}</h4>
+<p style="font-size:0.85rem;color:#6b8ca8;">${new Date(post.timestamp).toLocaleDateString('ar-EG')}</p>
+</div>
+<button class="post-dm-btn" onclick="openNewMessageModal('${post.author}')">
+<span>💬</span>
+<span>تواصل على الخاص</span>
+</button>
+</div>
+${post.desc ? `<div class="post-desc">${post.desc}</div>` : ''}
+${imagesHTML}
+<div class="post-actions">
+<button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${post.id}')">
+${isLiked ? '❤️' : '🤍'} ${post.likes || 0}
+</button>
+<button class="action-btn" id="comments-btn-${post.id}" onclick="toggleComments('${post.id}')">
+💬 تعليق ${comments.length > 0 ? `(${comments.length})` : ''}
+</button>
+</div>
+<div class="comments-section hide" id="comments-section-${post.id}">
+<div class="comment-input-wrapper">
+<input type="text" class="comment-input" id="comment-input-${post.id}" placeholder="اكتب تعليقك...">
+<button class="comment-send-btn" onclick="addComment('${post.id}')">📤</button>
+</div>
+<div class="comment-list">
+${commentsHTML || '<p style="text-align:center;color:#6b8ca8;padding:20px;">كن أول من يعلق</p>'}
+</div>
+</div>
+`;
+postsContainer.appendChild(div);
+});
+if (myPostsSection.classList.contains('show')) {
+renderMyPosts();
+}
+});
+}
+// ==================== أحداث النقر والإغلاق ====================
+window.onclick = (e) => {
+if (e.target.classList.contains('modal')) {
+e.target.style.display = 'none';
+}
+if (e.target === imageViewerModal) {
+closeImageViewer();
+}
+if (e.target === chatModal) {
+closeChat();
+}
+if (e.target === newMessageModal) {
+closeNewMessageModal();
+}
+if (window.innerWidth <= 768 && e.target === rightSidebar) {
+rightSidebar.classList.remove('show');
+}
+if (window.innerWidth <= 768 &&
+!mobileImagePreview.contains(e.target) &&
+e.target !== mobileImageBtn &&
+!mobileImageBtn.contains(e.target) &&
+mobileImagePreview.classList.contains('show')) {
+mobileImagePreview.classList.remove('show');
+mobileImageBtn.classList.remove('active');
+}
+};
+mobilePostInput.addEventListener('keypress', e => {
+if (e.key === 'Enter') {
+e.preventDefault();
+publishMobilePost();
+}
+});
+chatInput.addEventListener('keypress', e => {
+if (e.key === 'Enter') {
+e.preventDefault();
+sendChatMessage();
+}
+});
+newMessageText.addEventListener('keypress', e => {
+if (e.key === 'Enter' && !e.shiftKey) {
+e.preventDefault();
+sendNewMessage();
+}
+});
+document.addEventListener('keydown', (e) => {
+if (imageViewerModal.classList.contains('show')) {
+if (e.key === 'Escape') {
+closeImageViewer();
+} else if (e.key === 'ArrowRight') {
+navigateImage(1);
+} else if (e.key === 'ArrowLeft') {
+navigateImage(-1);
+}
+}
+if (e.key === 'Escape') {
+if (chatModal.classList.contains('show')) {
+closeChat();
+}
+if (newMessageModal.classList.contains('show')) {
+closeNewMessageModal();
+}
+}
+});
+document.addEventListener('keypress', e => {
+if (e.target.classList.contains('comment-input') && e.key === 'Enter') {
+const postId = e.target.id.replace('comment-input-', '');
+addComment(postId);
+}
+if (e.target.classList.contains('reply-input') && e.key === 'Enter') {
+const commentId = e.target.id.replace('reply-input-', '');
+const postId = e.target.closest('.comment-item')?.id?.replace('comment-item-', '');
+if (postId && commentId) {
+addReply(postId, parseInt(commentId));
+}
+}
+});
+</script>
+</body>
+</html>
+
